@@ -1,0 +1,51 @@
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.rakaneth.roguelikes</groupId>
+  <artifactId>vtermtest</artifactId>
+  <version>0.0.1-SNAPSHOT</version>
+  <packaging>jar</packaging>
+
+  <name>vtermtest</name>
+  <url>http://maven.apache.org</url>
+  
+  <repositories>
+    <repository>
+      <id>jitpack.io</id>
+      <url>https://jitpack.io</url>
+    </repository>
+    <repository>
+    	<id>projectlombok.org</id>
+    	<url>http://projectlombok.org/mavenrepo</url>
+    </repository>
+  </repositories>
+
+  <properties>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+  </properties>
+
+  <dependencies>
+    <dependency>
+      <groupId>junit</groupId>
+      <artifactId>junit</artifactId>
+      <version>3.8.1</version>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+    	<groupId>com.github.Valkryst</groupId>
+    	<artifactId>VTerminal</artifactId>
+    	<version>3.4.5</version>
+    </dependency>
+    <dependency>
+    	<groupId>org.projectlombok</groupId>
+    	<artifactId>lombok</artifactId>
+    	<version>0.9.2</version>
+    </dependency>
+    <dependency>
+    	<groupId>com.github.Squidpony.SquidLib</groupId>
+    	<artifactId>squidlib-util</artifactId>
+    	<version>b07ff9eb</version>
+    </dependency>
+  </dependencies>
+</project>
