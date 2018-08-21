@@ -2,21 +2,20 @@ package com.rakaneth.roguelikes.vtermtest;
 
 import java.io.IOException;
 
-import com.valkryst.VTerminal.Screen;
-import com.rakaneth.roguelikes.vtermtest.Sprite;
+import lombok.Getter;
+import squidpony.squidmath.Coord;
+import squidpony.squidmath.RNG;
+import squidpony.squidmath.StatefulRNG;
 
 public class App {
-    public static void main( String[] args ) throws IOException{
-        final Screen screen = new Screen();
-        screen.addCanvasToFrame();
-    	for (Sprite s: Sprite.values()) {
-    		
-    	}
-        for (int x=0; x<10; x++) {
-        	for (int y=0; y<10; y++) {
-        		screen.getTileAt(x, y).setCharacter('x');
-        	}
-        }
-        screen.draw();
+	@Getter static final RNG rng = new StatefulRNG(0xDEADBEEF);
+
+	public static void main( String[] args ) throws IOException {
+		Grafix grafix = new Grafix();
+		GameMap m = new MapBuilder("test").setWidth(100).setHeight(100).build();
+		Coord crsr = Coord.get(85, 95);
+		grafix.draw(m, crsr);
+		grafix.drawOnMap(Sprite.CURSOR, m, crsr, crsr);
+        grafix.refresh();
     }
 }
