@@ -1,4 +1,4 @@
-package com.rakaneth.roguelikes.vtermtest;
+package com.rakaneth.roguelikes.vtermtest.ui;
 
 import java.awt.Color;
 

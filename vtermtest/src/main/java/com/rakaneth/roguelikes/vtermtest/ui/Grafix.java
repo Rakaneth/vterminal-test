@@ -1,18 +1,31 @@
-package com.rakaneth.roguelikes.vtermtest;
+package com.rakaneth.roguelikes.vtermtest.ui;
 
 import java.awt.Color;
 import java.io.IOException;
 
+import com.rakaneth.roguelikes.vtermtest.GameMap;
+import com.rakaneth.roguelikes.vtermtest.GameUtils;
 import com.valkryst.VTerminal.Screen;
 import com.valkryst.VTerminal.Tile;
+import com.valkryst.VTerminal.builder.LabelBuilder;
+import com.valkryst.VTerminal.component.Label;
 
+import lombok.Getter;
 import squidpony.squidmath.Coord;
 
 public final class Grafix {
-  private final Screen screen;
+  @Getter private Screen screen;
+  private final int SCREENW = 100;
+  private final int SCREENH = 40;
+  private final int MAPW = 60;
+  private final int MAPH = 30;
 
-  public Grafix() throws IOException {
-    screen = new Screen();
+  public Grafix() {
+    try {
+      screen = new Screen(SCREENW, SCREENH);
+    } catch (IOException e) {
+      e.printStackTrace();
+    }
     screen.addCanvasToFrame();
   }
 
@@ -44,14 +57,12 @@ public final class Grafix {
     draw(s, c, false);
   }
 
-  public void draw(GameMap m, Coord center) {
-    int w = screen.getWidth();
-    int h = screen.getHeight();
+  public void draw(final GameMap m, final Coord center) {
     int wx, wy;
     Coord wc;
-    Coord cm = m.cam(center, w, h);
-    for (int y = 0; y < h; y++) {
-      for (int x = 0; x < w; x++) {
+    Coord cm = m.cam(center, MAPW, MAPH);
+    for (int y = 0; y < MAPH; y++) {
+      for (int x = 0; x < MAPW; x++) {
         wx = x + cm.x;
         wy = y + cm.y;
         wc = Coord.get(wx, wy);
@@ -62,16 +73,21 @@ public final class Grafix {
       }
     }
   }
+  
+  public void draw(final String s, final Coord c) {
+    LabelBuilder lb = new LabelBuilder();
+    lb.setDimensions(s.length(), 1);
+    lb.setText(s);
+    screen.addComponent(lb.build());
+  }
 
   private boolean inBounds(Coord c) {
-    return GameUtils.between(c.x, 0, screen.getWidth() - 1) &&
-           GameUtils.between(c.y, 0, screen.getHeight() - 1);
+    return GameUtils.between(c.x, 0, MAPW - 1) &&
+           GameUtils.between(c.y, 0, MAPH - 1);
   }
 
   public void drawOnMap(Sprite s, GameMap m, Coord pt, Coord center) {
-    int w = screen.getWidth();
-    int h = screen.getHeight();
-    Coord cm = m.cam(center, w, h);
+    Coord cm = m.cam(center, MAPW, MAPH);
     Coord toDraw = Coord.get(pt.x - cm.x, pt.y - cm.y);
     if (inBounds(toDraw)) {
       draw(s, toDraw);

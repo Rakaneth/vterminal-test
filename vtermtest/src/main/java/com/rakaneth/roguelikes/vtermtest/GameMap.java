@@ -3,6 +3,8 @@ package com.rakaneth.roguelikes.vtermtest;
 import java.util.HashMap;
 import java.util.Map;
 
+import com.rakaneth.roguelikes.vtermtest.ui.Sprite;
+
 import lombok.Getter;
 import squidpony.ArrayTools;
 import squidpony.squidmath.Coord;

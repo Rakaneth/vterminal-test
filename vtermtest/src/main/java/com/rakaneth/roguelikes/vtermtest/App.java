@@ -2,6 +2,9 @@ package com.rakaneth.roguelikes.vtermtest;
 
 import java.io.IOException;
 
+import com.rakaneth.roguelikes.vtermtest.ui.Grafix;
+import com.rakaneth.roguelikes.vtermtest.ui.Sprite;
+
 import lombok.Getter;
 import squidpony.squidmath.Coord;
 import squidpony.squidmath.RNG;
